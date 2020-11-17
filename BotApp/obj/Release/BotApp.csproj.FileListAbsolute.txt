@@ -1,0 +1,3 @@
+D:\PROJECT\BotApp\BotApp\obj\Release\BotApp.exe
+D:\PROJECT\BotApp\BotApp\obj\Release\BotApp.pdb
+D:\PROJECT\BotApp\BotApp\bin\Release\BotApp.exe.config

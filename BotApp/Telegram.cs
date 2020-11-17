@@ -154,7 +154,7 @@ namespace BotApp
 							BotAs.OverGame();
 						}
 
-						if (message.Text == "/capitals")
+						if (message.Text == "/startgame")
 						{
 							BotAs.StartGame();
 							List<string> continents = BotAs.GetContinents();

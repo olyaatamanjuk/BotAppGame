@@ -79,18 +79,18 @@ namespace BotApp
 						{
 							continue;
 						}
-						string tCapital = rows[1].InnerText;
+						string tCapital = rows[2].InnerText;
 						tCapital = tCapital.Replace("\n", string.Empty);
 
-						string tCountry = rows[2].InnerText;
+						string tCountry = rows[1].InnerText;
 						tCountry = tCountry.Replace("\n", string.Empty);
 
 						string tFlag = "";
 
-						int ioa = tCountry.IndexOf('&');
+						int ioa = tCountry.IndexOf(';');
 						if (ioa > -1)
 						{
-							string inh = rows[2].InnerHtml.ToString();
+							string inh = rows[1].InnerHtml.ToString();
 							string[] arr = inh.Split('<');
 							foreach (string s in arr)
 							{
@@ -101,7 +101,7 @@ namespace BotApp
 									tFlag = "https:" + tFlag.Replace("22px", "1000px");
 								}
 							}
-							tCountry = tCountry.Remove(ioa, tCountry.Length - ioa);
+							tCountry = tCountry.Remove(0, ioa+1);
 							CountryList.Add(new Country { Name = tCountry, Flag = tFlag, Capital = tCapital });
 							tCountries.Add(new Country { Name = tCountry, Flag = tFlag, Capital = tCapital });
 						}
