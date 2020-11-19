@@ -74,9 +74,9 @@ namespace BotApp
 										{
 															new [] {
 
-																 new Telegram.Bot.Types.ReplyMarkups.InlineKeyboardButton { Text=dic[1], CallbackData = (rndValue == 1) ? "correctAnswer" + tCountry1 : "wrongAnswer" },
-																 new Telegram.Bot.Types.ReplyMarkups.InlineKeyboardButton { Text=dic[2], CallbackData = (rndValue == 2) ? "correctAnswer" + tCountry1 : "wrongAnswer" },
-																 new Telegram.Bot.Types.ReplyMarkups.InlineKeyboardButton { Text=dic[3], CallbackData = (rndValue == 3) ? "correctAnswer" + tCountry1 : "wrongAnswer" },
+																 new Telegram.Bot.Types.ReplyMarkups.InlineKeyboardButton { Text=dic[1], CallbackData = (rndValue == 1) ? "correctAnswer" + tCountry1 : "wrongAnswer1" },
+																 new Telegram.Bot.Types.ReplyMarkups.InlineKeyboardButton { Text=dic[2], CallbackData = (rndValue == 2) ? "correctAnswer" + tCountry1 : "wrongAnswer2" },
+																 new Telegram.Bot.Types.ReplyMarkups.InlineKeyboardButton { Text=dic[3], CallbackData = (rndValue == 3) ? "correctAnswer" + tCountry1 : "wrongAnswer3" },
 															},
 										}
 									);
@@ -98,6 +98,8 @@ namespace BotApp
 				Bot.OnCallbackQuery += async (object sc, Telegram.Bot.Args.CallbackQueryEventArgs ev) =>
 				{
 					var message = ev.CallbackQuery.Message;
+					await Bot.AnswerCallbackQueryAsync(ev.CallbackQuery.Id);
+
 					if (ev.CallbackQuery.Data == "callback0")
 					{
 						await Bot.AnswerCallbackQueryAsync(ev.CallbackQuery.Id, "You hav choosen " + ev.CallbackQuery.Data, true);
@@ -113,7 +115,7 @@ namespace BotApp
 
 					}
 
-					else if (ev.CallbackQuery.Data == "wrongAnswer")
+					else if (ev.CallbackQuery.Data.Contains("wrongAnswer"))
 					{
 						await Bot.SendTextMessageAsync(message.Chat.Id, "Емм..Ні. Йдем далі...", replyToMessageId: message.MessageId);
 						await Bot.AnswerCallbackQueryAsync(ev.CallbackQuery.Id);// видаляє очікування (годинник)
